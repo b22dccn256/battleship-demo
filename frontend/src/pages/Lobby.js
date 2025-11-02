@@ -61,9 +61,13 @@ export default function Lobby({ token, user, onLogout }) {
   };
 
   const createRoom = () => {
+    console.log('Create room clicked, ws state:', ws?.readyState);
     if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify({ type: 'create_room' }));
+      const message = { type: 'create_room' };
+      console.log('Sending message:', message);
+      ws.send(JSON.stringify(message));
     } else {
+      console.error('WebSocket not ready, state:', ws?.readyState);
       toast.error('Chưa kết nối đến server');
     }
   };
