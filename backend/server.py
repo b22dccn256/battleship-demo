@@ -271,7 +271,7 @@ async def websocket_endpoint(websocket: WebSocket, token: str):
                     "boards": {username: {}, room["host"]: {}},
                     "ready": {username: False, room["host"]: False},
                     "current_turn": room["host"],
-                    "hits": {username: [], room["host": []},
+                    "hits": {username: [], room["host"]: []},
                     "started_at": datetime.now(timezone.utc).isoformat()
                 }
                 
