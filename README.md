@@ -13,7 +13,7 @@ Welcome to the Battleship Game frontend repository! This project provides a user
 - **Game History**: Track your past games and performance. 
 - **Responsive Design**: Playable on various devices and screen sizes. 
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 Here's a breakdown of the technologies used in this project:
 
