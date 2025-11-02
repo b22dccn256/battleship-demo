@@ -168,6 +168,7 @@ export default function Game({ token, user }) {
   const sendChat = () => {
     if (!chatInput.trim() || !ws) return;
     
+    console.log('Sending chat message:', chatInput);
     ws.send(JSON.stringify({ type: 'chat', message: chatInput }));
     setChatInput('');
   };
