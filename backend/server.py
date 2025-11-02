@@ -215,8 +215,8 @@ async def get_game_history(current_user: dict = Depends(get_current_user)):
     ).sort("finished_at", -1).limit(20).to_list(20)
     return games
 
-# WebSocket endpoint
-@app.websocket("/ws/{token}")
+# WebSocket endpoint  
+@app.websocket("/api/ws/{token}")
 async def websocket_endpoint(websocket: WebSocket, token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
