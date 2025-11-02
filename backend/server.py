@@ -146,6 +146,10 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     return user
 
 # Auth Routes
+@api_router.get("/")
+async def root():
+    return {"message": "BattleShip API is running"}
+
 @api_router.post("/auth/register", response_model=Token)
 async def register(user: UserRegister):
     existing_user = await db.users.find_one({"username": user.username})
