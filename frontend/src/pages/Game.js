@@ -55,6 +55,7 @@ export default function Game({ token, user }) {
     };
 
     websocket.onmessage = (event) => {
+      console.log('Game WebSocket message:', event.data);
       const data = JSON.parse(event.data);
       
       if (data.type === 'player_joined') {
@@ -95,6 +96,7 @@ export default function Game({ token, user }) {
           toast.error('Bạn đã thua!');
         }
       } else if (data.type === 'chat') {
+        console.log('Chat message received:', data);
         setChatMessages(prev => [...prev, data]);
       } else if (data.type === 'error') {
         toast.error(data.message);
