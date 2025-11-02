@@ -25,21 +25,26 @@ export default function Lobby({ token, user, onLogout }) {
   }, [token]);
 
   const connectWebSocket = () => {
-    const websocket = new WebSocket(`${WS_URL}/ws/${token}`);
+    const wsUrl = `${WS_URL}/ws/${token}`;
+    console.log('Connecting to WebSocket:', wsUrl);
+    const websocket = new WebSocket(wsUrl);
     
     websocket.onopen = () => {
-      console.log('WebSocket connected');
+      console.log('WebSocket connected successfully');
       setWs(websocket);
       wsRef.current = websocket;
     };
 
     websocket.onmessage = (event) => {
+      console.log('WebSocket message received:', event.data);
       const data = JSON.parse(event.data);
       
       if (data.type === 'room_created') {
+        console.log('Room created, navigating to:', `/game/${data.room_code}`);
         toast.success(`Phòng đã tạo: ${data.room_code}`);
         navigate(`/game/${data.room_code}`);
       } else if (data.type === 'error') {
+        console.error('WebSocket error message:', data.message);
         toast.error(data.message);
       }
     };
@@ -49,8 +54,8 @@ export default function Lobby({ token, user, onLogout }) {
       toast.error('Lỗi kết nối WebSocket');
     };
 
-    websocket.onclose = () => {
-      console.log('WebSocket disconnected');
+    websocket.onclose = (event) => {
+      console.log('WebSocket disconnected:', event.code, event.reason);
       setWs(null);
     };
   };
