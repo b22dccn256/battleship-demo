@@ -25,7 +25,7 @@ export default function Lobby({ token, user, onLogout }) {
   }, [token]);
 
   const connectWebSocket = () => {
-    const wsUrl = `${WS_URL}/ws/${token}`;
+    const wsUrl = `${WS_URL}/api/ws/${token}`;
     console.log('Connecting to WebSocket:', wsUrl);
     const websocket = new WebSocket(wsUrl);
     
